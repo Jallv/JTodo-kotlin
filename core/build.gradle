@@ -1,9 +1,10 @@
 import com.hi.dhl.plugin.*
 
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -11,13 +12,13 @@ android {
     buildToolsVersion BuildConfig.buildToolsVersion
 
     defaultConfig {
-        applicationId "com.jal.todo"
         minSdkVersion BuildConfig.minSdkVersion
         targetSdkVersion BuildConfig.targetSdkVersion
-        versionCode BuildConfig.versionCode
-        versionName BuildConfig.versionName
+        versionCode 1
+        versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -42,9 +43,33 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation project(path: ':core')
     testImplementation Depend.junit
     androidTestImplementation Depend.androidTestJunit
     androidTestImplementation Depend.espressoCore
 
+    api Kt.stdlibJdk8
+    api AndroidX.coreKtx
+    api AndroidX.appcompat
+    api AndroidX.constraintlayout
+    api AndroidX.pagingRuntime
+    api AndroidX.swiperefreshlayout
+    api AndroidX.appStartup
+    api AndroidX.cardview
+    api AndroidX.navigationfragment
+    api AndroidX.navigationui
+    api Android.meteria
+    api AndroidX.recyclerview
+
+    api Fragment.runtimeKtx
+
+    api Retrofit.runtime
+    api Retrofit.gson
+    api Retrofit.logging
+
+    api Coil.runtime
+
+    api Hilt.daggerRuntime
+    kapt Hilt.daggerCompiler
+    api Hilt.viewModule
+    kapt Hilt.compiler
 }
