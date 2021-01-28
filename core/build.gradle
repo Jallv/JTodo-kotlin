@@ -72,4 +72,8 @@ dependencies {
     kapt Hilt.daggerCompiler
     api Hilt.viewModule
     kapt Hilt.compiler
+
+    api Room.runtime
+    api Room.ktx
+    kapt Room.compiler
 }

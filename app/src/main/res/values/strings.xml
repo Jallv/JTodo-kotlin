@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">JTodo-kotlin</string>
+    <string name="task">任务</string>
+    <string name="tomato_clock">番茄钟</string>
+    <string name="record">记录</string>
+    <string name="my">我的</string>
 </resources>

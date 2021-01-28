@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/navigation_home"
-        android:icon="@drawable/ic_home_black_24dp"
-        android:title="@string/title_home" />
+        android:id="@+id/navigation_task"
+        android:icon="@drawable/ic_task_editing"
+        android:title="@string/task" />
 
     <item
-        android:id="@+id/navigation_project"
-        android:icon="@drawable/ic_notifications_black_24dp"
-        android:title="@string/title_project" />
-
+        android:id="@+id/navigation_clock"
+        android:icon="@drawable/ic_timer"
+        android:title="@string/tomato_clock" />
+    <item
+        android:id="@+id/navigation_record"
+        android:icon="@drawable/ic_record"
+        android:title="@string/record" />
+    <item
+        android:id="@+id/navigation_my"
+        android:icon="@drawable/ic_my"
+        android:title="@string/my" />
 </menu>
