@@ -8,7 +8,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
-import com.jal.tibet.BR
 
 /**
  * @author aljiang
@@ -18,6 +17,7 @@ import com.jal.tibet.BR
 abstract class BaseFragment<M : ViewDataBinding, T : ViewModel> : Fragment() {
     lateinit var mViewModel: T
     lateinit var mViewBinding: M
+    private var viewModelId: Int = 0
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -25,10 +25,13 @@ abstract class BaseFragment<M : ViewDataBinding, T : ViewModel> : Fragment() {
     ): View? {
         mViewBinding = DataBindingUtil.inflate(layoutInflater, getLayoutResId(), null, false)
         mViewModel = initViewModel()
-        mViewBinding.setVariable(BR.viewModel, mViewModel)
+        viewModelId = initVariableId()
+        mViewBinding.setVariable(viewModelId, mViewModel)
         initData()
         return mViewBinding.root
     }
+
+    protected abstract fun initVariableId(): Int
 
     protected abstract fun getLayoutResId(): Int
 

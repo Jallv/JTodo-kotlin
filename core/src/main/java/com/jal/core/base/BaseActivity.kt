@@ -26,6 +26,7 @@ abstract class BaseActivity<M : ViewDataBinding, T : ViewModel> : AppCompatActiv
     }
 
     abstract fun initVariableId(): Int
+    
     protected abstract fun getLayoutResId(): Int
 
     protected abstract fun initViewModel(): T

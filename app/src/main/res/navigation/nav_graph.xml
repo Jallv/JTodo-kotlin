@@ -3,6 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/navigation_home">
-
+    app:startDestination="@id/navigation_task">
+    <fragment
+        android:id="@+id/navigation_task"
+        android:name="com.jal.todo.task.TaskFragment" />
+    <fragment
+        android:id="@+id/navigation_clock"
+        android:name="com.jal.todo.time.TimerFragment" />
 </navigation>
