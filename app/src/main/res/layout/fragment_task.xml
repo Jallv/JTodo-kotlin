@@ -1,18 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <variable
             name="viewModel"
-            type="com.jal.todo.task.TaskViewModel" />
+            type="com.jal.todo.ui.task.TaskViewModel" />
+
+        <import type="com.jal.todo.ui.task.TaskItemViewModel" />
+
+        <variable
+            name="adapter"
+            type="me.tatarka.bindingcollectionadapter2.BindingRecyclerViewAdapter&lt;TaskItemViewModel&gt;" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/app_main_bg"
+        android:fitsSystemWindows="true"
         android:orientation="vertical">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/app_title_color"
+                    android:textSize="@dimen/sp_18"
+                    app:text="@{viewModel.currentTime}"
+                    tools:text="今天" />
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <com.haibin.calendarview.CalendarLayout
+            android:id="@+id/calendarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:calendar_content_view_id="@+id/nestedScrollView"
+            app:calendar_show_mode="both_month_week_view"
+            app:default_status="shrink"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/app_bar_layout">
+
+            <com.haibin.calendarview.CalendarView
+
+                android:id="@+id/calendarView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/app_calendar_bg"
+                app:calendar_height="@dimen/dp_64"
+                app:current_day_lunar_text_color="@color/app_current_day_lunar_text_color"
+                app:current_day_text_color="@color/app_current_day_text_color"
+                app:current_month_lunar_text_color="@color/app_current_month_lunar_text_color"
+                app:current_month_text_color="@color/app_current_month_text_color"
+                app:day_text_size="@dimen/sp_18"
+                app:lunar_text_size="@dimen/sp_10"
+                app:max_year="2051"
+                app:max_year_day="31"
+                app:max_year_month="12"
+                app:min_year="1951"
+                app:min_year_day="1"
+                app:min_year_month="1"
+                app:month_view_auto_select_day="last_select_day_ignore_current"
+                app:month_view_show_mode="mode_only_current"
+                app:other_month_lunar_text_color="@color/app_other_month_lunar_text_color"
+                app:other_month_text_color="@color/app_other_month_text_color"
+                app:selected_lunar_text_color="@color/app_selected_lunar_text_color"
+                app:selected_text_color="@color/app_selected_text_color"
+                app:week_background="@color/app_week_background"
+                app:week_bar_height="@dimen/dp_46"
+                app:week_line_background="@color/app_week_line_background"
+                app:week_start_with="sun"
+                app:week_text_color="@color/app_week_text_color"
+                app:week_text_size="@dimen/sp_16" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/nestedScrollView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/app_task_list_background"
+                android:clipToPadding="false"
+                android:paddingLeft="@dimen/dp_15"
+                android:paddingRight="@dimen/dp_15"
+                android:paddingBottom="@dimen/dp_15"
+                app:adapter="@{adapter}"
+                app:itemBinding="@{viewModel.itemBinding}"
+                app:items="@{viewModel.observableList}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:verticalSpace="@{@dimen/dp_10}" />
+
+        </com.haibin.calendarview.CalendarLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -6,8 +6,8 @@
     app:startDestination="@id/navigation_task">
     <fragment
         android:id="@+id/navigation_task"
-        android:name="com.jal.todo.task.TaskFragment" />
+        android:name="com.jal.todo.ui.task.TaskFragment" />
     <fragment
         android:id="@+id/navigation_clock"
-        android:name="com.jal.todo.time.TimerFragment" />
+        android:name="com.jal.todo.ui.time.TimerFragment" />
 </navigation>

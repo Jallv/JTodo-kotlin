@@ -1,6 +1,7 @@
 package com.jal.todo.app
 
 import android.app.Application
+import com.iflytek.common.ContextProvider
 import dagger.hilt.android.HiltAndroidApp
 
 /**
@@ -10,4 +11,7 @@ import dagger.hilt.android.HiltAndroidApp
  */
 @HiltAndroidApp
 class App : Application() {
+    override fun onCreate() {
+        super.onCreate()
+    }
 }

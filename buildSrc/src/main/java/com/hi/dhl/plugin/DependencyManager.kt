@@ -56,8 +56,9 @@ object AndroidX {
         "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swiperefreshlayout}"
     const val appStartup = "androidx.startup:startup-runtime:${Versions.appStartup}"
     const val meteria = "androidx.compose.material:material:${Versions.materialX}"
-    const val navigationfragment = "androidx.navigation:navigation-fragment-ktx:${Versions.nav_version}"
-    const val navigationui =  "androidx.navigation:navigation-ui-ktx:${Versions.nav_version}"
+    const val navigationfragment =
+        "androidx.navigation:navigation-fragment-ktx:${Versions.nav_version}"
+    const val navigationui = "androidx.navigation:navigation-ui-ktx:${Versions.nav_version}"
 }
 
 object Android {
@@ -130,3 +131,19 @@ object Depend {
     const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
 }
 
+object Recyclerview {
+    const val bindingCollectionAdapter =
+        "me.tatarka.bindingcollectionadapter2:bindingcollectionadapter:3.1.1"
+    const val bindingCollectionAdapterRecyclerview =
+        "me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-recyclerview:2.2.0"
+}
+
+object Util {
+    const val statusBarUtil = "com.jaeger.statusbarutil:library:1.5.1"
+    const val mmkv = "com.tencent:mmkv:1.0.23"
+}
+
+object Glide {
+    const val glide = "com.github.bumptech.glide:glide:4.8.0"
+    const val glideCompiler = "com.github.bumptech.glide:compiler:4.8.0"
+}

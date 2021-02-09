@@ -46,7 +46,7 @@ dependencies {
     testImplementation Depend.junit
     androidTestImplementation Depend.androidTestJunit
     androidTestImplementation Depend.espressoCore
-
+    api project(path: ':common')
     api Kt.stdlibJdk8
     api AndroidX.coreKtx
     api AndroidX.appcompat
@@ -76,4 +76,13 @@ dependencies {
     api Room.runtime
     api Room.ktx
     kapt Room.compiler
+
+    //状态栏工具
+    api Util.statusBarUtil
+
+    //recyclerview
+    api Recyclerview.bindingCollectionAdapter
+    api Recyclerview.bindingCollectionAdapterRecyclerview
+    api Glide.glide
+    annotationProcessor Glide.glideCompiler
 }

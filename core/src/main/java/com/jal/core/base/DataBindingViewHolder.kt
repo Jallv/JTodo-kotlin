@@ -1,4 +1,4 @@
-package com.jal.tibet.base
+package com.jal.core.base
 
 import android.content.Context
 import android.view.View
