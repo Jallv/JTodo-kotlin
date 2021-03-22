@@ -40,7 +40,10 @@ abstract class BaseFragment<M : ViewDataBinding, T : BaseViewModel<BaseModel>> :
         initViewObservable()
         registerUIChangeLiveDataCallBack()
     }
-
+    override fun onDestroy() {
+        super.onDestroy()
+        lifecycle.removeObserver(viewModel)
+    }
     /*
      * 私有的初始化Databinding和ViewModel方法
      */
@@ -53,18 +56,7 @@ abstract class BaseFragment<M : ViewDataBinding, T : BaseViewModel<BaseModel>> :
         lifecycle.addObserver(viewModel)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        lifecycle.removeObserver(viewModel)
-    }
-
     private fun registerUIChangeLiveDataCallBack() {
-        viewModel.uc.showDialogEvent.observe(this, Observer {
-            showDialog(it)
-        })
-        viewModel.uc.dismissDialogEvent.observe(this, Observer {
-            dismissDialog()
-        })
         viewModel.uc.startActivityEvent.observe(this, Observer {
             val clz = it[BaseViewModel.ParameterField.CLASS] as Class<*>
             val bundle = it[BaseViewModel.ParameterField.BUNDLE] as Bundle
@@ -80,7 +72,7 @@ abstract class BaseFragment<M : ViewDataBinding, T : BaseViewModel<BaseModel>> :
         })
     }
 
-    open fun startActivity(clz: Class<*>, bundle: Bundle?) {
+    private fun startActivity(clz: Class<*>, bundle: Bundle?) {
         val intent = Intent(context, clz)
         if (bundle != null) {
             intent.putExtras(bundle)
@@ -88,7 +80,7 @@ abstract class BaseFragment<M : ViewDataBinding, T : BaseViewModel<BaseModel>> :
         startActivity(intent)
     }
 
-    open fun startActivity(
+    private fun startActivity(
         clz: Class<*>,
         bundle: Bundle?,
         code: Int
@@ -99,9 +91,6 @@ abstract class BaseFragment<M : ViewDataBinding, T : BaseViewModel<BaseModel>> :
         }
         startActivityForResult(intent, code)
     }
-
-    fun showDialog(title: String) {}
-    fun dismissDialog() {}
 
     /**
      * 页面事件监听的方法，一般用于ViewModel层转到View层的事件注册

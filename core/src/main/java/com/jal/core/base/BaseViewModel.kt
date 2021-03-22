@@ -26,13 +26,14 @@ open class BaseViewModel<M : BaseModel?> constructor(
     }
 
     var backCommand: VoidBindingCommand? = VoidBindingCommand(BindingAction { finish() })
-
-    fun showDialog(title: String? = "请稍后...") {
-        uc.showDialogEvent.postValue(title)
-    }
-
-    fun dismissDialog() {
-        uc.dismissDialogEvent.call()
+    override fun onCreate() {}
+    override fun onResume() {}
+    override fun onPause() {}
+    override fun onStop() {}
+    override fun onDestroy() {}
+    override fun onCleared() {
+        super.onCleared()
+        model?.onCleared()
     }
     /**
      * 跳转页面
@@ -47,9 +48,9 @@ open class BaseViewModel<M : BaseModel?> constructor(
      */
     fun startActivity(clz: Class<*>, bundle: Bundle? = null) {
         val params: MutableMap<String, Any> = HashMap()
-        params[ParameterField.CLASS] = clz
+        params[CLASS] = clz
         if (bundle != null) {
-            params[ParameterField.BUNDLE] = bundle
+            params[BUNDLE] = bundle
         }
         uc.startActivityEvent.postValue(params)
     }
@@ -60,10 +61,10 @@ open class BaseViewModel<M : BaseModel?> constructor(
         requestCode: Int
     ) {
         val params: MutableMap<String, Any> = HashMap()
-        params[ParameterField.CLASS] = clz
-        params[ParameterField.REQUEST_CODE] = requestCode
+        params[CLASS] = clz
+        params[REQUEST_CODE] = requestCode
         if (bundle != null) {
-            params[ParameterField.BUNDLE] = bundle
+            params[BUNDLE] = bundle
         }
         uc.startActivityEvent.postValue(params)
     }
@@ -75,26 +76,19 @@ open class BaseViewModel<M : BaseModel?> constructor(
         uc.finishEvent.call()
     }
 
-    override fun onAny(owner: LifecycleOwner?, event: Lifecycle.Event?) {}
-    override fun onCreate() {}
-    override fun onDestroy() {}
-    override fun onStart() {}
-    override fun onStop() {}
-    override fun onResume() {}
-    override fun onPause() {}
-    override fun onCleared() {
-        super.onCleared()
-        model?.onCleared()
-    }
-
-    inner class UIChangeLiveData {
-        val showDialogEvent by lazy { SingleLiveEvent<String>() }
-        val dismissDialogEvent by lazy { SingleLiveEvent<Void>() }
+    class UIChangeLiveData {
         val startActivityEvent by lazy { SingleLiveEvent<MutableMap<String, Any>>() }
         val finishEvent by lazy { SingleLiveEvent<Void>() }
     }
 
-    object ParameterField {
+    open class UiState<T>(
+        val isLoading: Boolean = false,
+        val isRefresh: Boolean = false,
+        val isSuccess: T? = null,
+        val isError: String? = null
+    )
+
+    companion object ParameterField {
         const val CLASS = "CLASS"
         const val CANONICAL_NAME = "CANONICAL_NAME"
         const val BUNDLE = "BUNDLE"

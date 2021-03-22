@@ -27,6 +27,11 @@ abstract class BaseActivity<M : ViewDataBinding, T : BaseViewModel<BaseModel>> :
         registerUIChangeLiveDataCallBack()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        lifecycle.removeObserver(viewModel)
+    }
+
     private fun initViewDataBinding() {
         //DataBindingUtil类需要在project的build中配置 dataBinding {enabled true }, 同步后会自动关联android.databinding包
         binding = DataBindingUtil.setContentView(this, getLayoutResId())
@@ -38,18 +43,8 @@ abstract class BaseActivity<M : ViewDataBinding, T : BaseViewModel<BaseModel>> :
         lifecycle.addObserver(viewModel)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        lifecycle.removeObserver(viewModel)
-    }
 
     private fun registerUIChangeLiveDataCallBack() {
-        viewModel.uc.showDialogEvent.observe(this, Observer {
-            showDialog(it)
-        })
-        viewModel.uc.dismissDialogEvent.observe(this, Observer {
-            dismissDialog()
-        })
         viewModel.uc.startActivityEvent.observe(this, Observer {
             val clz = it[BaseViewModel.ParameterField.CLASS] as Class<*>
             val bundle = it[BaseViewModel.ParameterField.BUNDLE] as Bundle
@@ -65,7 +60,7 @@ abstract class BaseActivity<M : ViewDataBinding, T : BaseViewModel<BaseModel>> :
         })
     }
 
-    open fun startActivity(clz: Class<*>, bundle: Bundle?) {
+    private fun startActivity(clz: Class<*>, bundle: Bundle?) {
         val intent = Intent(this, clz)
         if (bundle != null) {
             intent.putExtras(bundle)
@@ -73,7 +68,7 @@ abstract class BaseActivity<M : ViewDataBinding, T : BaseViewModel<BaseModel>> :
         startActivity(intent)
     }
 
-    open fun startActivity(
+    private fun startActivity(
         clz: Class<*>,
         bundle: Bundle?,
         code: Int
@@ -84,9 +79,6 @@ abstract class BaseActivity<M : ViewDataBinding, T : BaseViewModel<BaseModel>> :
         }
         startActivityForResult(intent, code)
     }
-
-    fun showDialog(title: String) {}
-    fun dismissDialog() {}
 
     /**
      * 页面事件监听的方法，一般用于ViewModel层转到View层的事件注册

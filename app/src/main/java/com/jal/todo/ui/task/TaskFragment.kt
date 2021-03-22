@@ -27,32 +27,34 @@ class TaskFragment : BaseFragment<FragmentTaskBinding, TaskViewModel>() {
     override fun initVariableId() = BR.viewModel
 
     override fun initData() {
-        binding.calendarView.setOnCalendarSelectListener(object :
-            CalendarView.OnCalendarSelectListener {
-            override fun onCalendarSelect(calendar: Calendar?, isClick: Boolean) {
-                if (!isClick) {
-                    return
+        binding.apply {
+            calendarView.setOnCalendarSelectListener(object :
+                CalendarView.OnCalendarSelectListener {
+                override fun onCalendarSelect(calendar: Calendar?, isClick: Boolean) {
+                    if (!isClick) {
+                        return
+                    }
+                    calendar?.let {
+
+                        viewModel.currentTime.set(
+                            if (DateUtil.isToday(Date(it.timeInMillis)))
+                                ResourcesUtil.getString(R.string.today)
+                            else
+                                DateUtil.formatLong(
+                                    it.timeInMillis,
+                                    DateUtil.FormatType.yyyyMMdd
+                                )
+                        )
+                    }
                 }
-                calendar?.let {
 
-                    viewModel.currentTime.set(
-                        if (DateUtil.isToday(Date(it.timeInMillis)))
-                            ResourcesUtil.getString(R.string.today)
-                        else
-                            DateUtil.formatLong(
-                                it.timeInMillis,
-                                DateUtil.FormatType.yyyyMMdd
-                            )
-                    )
+                override fun onCalendarOutOfRange(calendar: Calendar?) {
+
                 }
-            }
 
-            override fun onCalendarOutOfRange(calendar: Calendar?) {
-
-            }
-
-        })
-        binding.adapter = BindingRecyclerViewAdapter<TaskItemViewModel>()
+            })
+            adapter = BindingRecyclerViewAdapter<TaskItemViewModel>()
+        }
     }
 
 }
