@@ -16,6 +16,6 @@ import com.jal.core.widget.SpaceItemDecoration
     "itemRightPadding",
     requireAll = false
 )
-fun RecyclerView.addItemPadding(top: Int = 0, left: Int = 0, bottom: Int = 0, right: Int = 0) {
-    addItemDecoration(SpaceItemDecoration(top, left, bottom, right))
+fun RecyclerView.addItemPadding(top: Float = 0F, left: Float = 0F, bottom: Float = 0F, right: Float = 0F) {
+    addItemDecoration(SpaceItemDecoration(top.toInt(), left.toInt(), bottom.toInt(), right.toInt()))
 }

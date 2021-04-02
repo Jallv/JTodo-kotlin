@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="app_color_primary">#F3F2F7</color>
-    <color name="app_color_primary_dark">#F3F2F7</color>
-    <color name="app_main_bg">#F3F2F7</color>
-    <color name="app_title_color">#FF000000</color>
+    <color name="app_primary">#308EFF</color>
+    <color name="app_primary_dark">#308EFF</color>
+    <color name="app_accent">#308EFF</color>
+    <color name="app_main_bg">#F5F6F7</color>
+    <color name="app_title">#111111</color>
 
-    <color name="app_calendar_bg">#F3F2F7</color>
-    <color name="app_current_day_lunar_text_color">#FF000000</color>
-    <color name="app_current_day_text_color">#FF000000</color>
-    <color name="app_current_month_lunar_text_color">#99000000</color>
-    <color name="app_current_month_text_color">#FF000000</color>
-    <color name="app_other_month_lunar_text_color">#99000000</color>
-    <color name="app_other_month_text_color">#FF000000</color>
-    <color name="app_selected_lunar_text_color">#FF000000</color>
-    <color name="app_selected_text_color">#FF000000</color>
-    <color name="app_week_background">#F3F2F7</color>
-    <color name="app_week_line_background">#00FFFFFF</color>
-    <color name="app_week_text_color">#FF000000</color>
-    <color name="app_task_list_background">#FFFFFF</color>
+    <color name="app_calendar_bg">#FFFFFF</color>
+    <color name="app_calendar_current_day_lunar_text">#111111</color>
+    <color name="app_calendar_current_day_text">#111111</color>
+    <color name="app_calendar_current_month_lunar_text">#99111111</color>
+    <color name="app_calendar_current_month_text">#111111</color>
+    <color name="app_calendar_other_month_lunar_text">#99111111</color>
+    <color name="app_calendar_other_month_text">#111111</color>
+    <color name="app_calendar_selected_lunar_text">#111111</color>
+    <color name="app_calendar_selected_text">#111111</color>
+    <color name="app_calendar_week_bg">#FFFFFF</color>
+    <color name="app_calendar_week_line_bg">#FFFFFF</color>
+    <color name="app_calendar_week_text">#111111</color>
+
+    <color name="app_task_list_bg">#FFFFFF</color>
 </resources>

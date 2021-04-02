@@ -16,7 +16,8 @@ android {
         targetSdkVersion BuildConfig.targetSdkVersion
         versionCode BuildConfig.versionCode
         versionName BuildConfig.versionName
-
+        multiDexEnabled true
+        resourcePrefix "app_"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -46,9 +47,7 @@ dependencies {
     androidTestImplementation Test.androidTestJunit
     androidTestImplementation Test.espressoCore
 
-
+    implementation Android.multidex
     implementation project(path: ':core')
     implementation project(path: ':calendarview')
-    api AndroidX.recyclerview
-
 }

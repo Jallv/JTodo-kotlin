@@ -1,9 +1,12 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="Theme.JTodokotlin" parent="Theme.MaterialComponents.Light.DarkActionBar">
-        <item name="colorPrimary">@color/app_color_primary</item>
-        <item name="colorPrimaryDark">@color/app_color_primary_dark</item>
-        <item name="colorAccent">@color/app_color_primary_dark</item>
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <!--    Appbar背景色    -->
+        <item name="colorPrimary">@color/app_primary</item>
+        <!--    状态栏颜色    -->
+        <item name="colorPrimaryDark">@color/app_primary_dark</item>
+        <!--控制各个控件被选中时的颜色-->
+        <item name="colorAccent">@color/app_accent</item>
         <item name="windowNoTitle">true</item>
     </style>
 </resources>

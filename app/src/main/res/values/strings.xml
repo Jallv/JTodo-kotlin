@@ -1,8 +1,33 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">JTodo-kotlin</string>
-    <string name="task">任务</string>
-    <string name="tomato_clock">番茄钟</string>
-    <string name="record">记录</string>
-    <string name="my">我的</string>
-    <string name="today">今天</string>
+    <string name="app_task">任务</string>
+    <string name="app_tomato_clock">番茄钟</string>
+    <string name="app_record">记录</string>
+    <string name="app_my">我的</string>
+    <string name="app_today">今天</string>
+    <string name="app_save">保存</string>
+    <string name="app_add_task_box">加入任务箱</string>
+    <string name="app_add_task">添加任务</string>
+    <string name="app_tomorrow">明天</string>
+    <string name="app_select_date">选择日期</string>
+    <string name="app_no_date">暂无日期</string>
+    <string name="app_cancel">取消</string>
+    <string name="app_sure">确定</string>
+    <string name="app_add_sub_task">添加子任务</string>
+    <string name="app_add">添加</string>
+    <string name="app_prepare_input">准备做什么？</string>
+    <string name="app_every_day">每天</string>
+    <string name="app_every_week">每周</string>
+    <string name="app_add_reminder">添加提醒</string>
+    <string name="app_set_repetition">设置重复</string>
+    <string name="app_priority">优先级</string>
+    <string name="app_commonly">一般</string>
+    <string name="app_important">重要</string>
+    <string name="app_urgent">紧急</string>
+    <string name="app_repeat_event">重复事件</string>
+    <string name="app_next_task">下一个任务</string>
+    <string name="app_next_task_en">NEXT TASK</string>
+    <string name="app_understand_focus"><u>了解番茄工作法</u></string>
+    <string name="app_start_focus">开始专注</string>
+    <string name="app_give_up_focus">放弃专注</string>
 </resources>

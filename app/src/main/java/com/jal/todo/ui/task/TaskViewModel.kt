@@ -17,13 +17,13 @@ import me.tatarka.bindingcollectionadapter2.ItemBinding
  */
 class TaskViewModel constructor(application: Application) :
     BaseViewModel<BaseModel>(application) {
-    var observableList: ObservableList<TaskItemViewModel> = ObservableArrayList<TaskItemViewModel>()
-    var itemBinding: ItemBinding<TaskItemViewModel> =
+    val observableList: ObservableList<TaskItemViewModel> = ObservableArrayList<TaskItemViewModel>()
+    val itemBinding: ItemBinding<TaskItemViewModel> =
         ItemBinding.of(BR.viewModel, R.layout.item_task)
     val currentTime = ObservableField<String>()
 
     init {
-        currentTime.set(getApplication<Application>().getString(R.string.today))
+        currentTime.set(getApplication<Application>().getString(R.string.app_today))
         observableList.add(TaskItemViewModel(this))
     }
 }

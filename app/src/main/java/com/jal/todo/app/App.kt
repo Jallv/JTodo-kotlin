@@ -1,6 +1,8 @@
 package com.jal.todo.app
 
 import android.app.Application
+import android.content.Context
+import androidx.multidex.MultiDex
 import com.jal.todo.BuildConfig
 import com.jal.todo.di.appModule
 import org.koin.android.ext.koin.androidContext
@@ -28,5 +30,10 @@ class App : Application() {
             androidContext(this@App)
             modules(appModule)
         }
+    }
+
+    override fun attachBaseContext(base: Context?) {
+        super.attachBaseContext(base)
+        MultiDex.install(this);
     }
 }

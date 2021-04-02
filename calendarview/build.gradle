@@ -1,14 +1,17 @@
+import com.hi.dhl.plugin.AndroidX
+import com.hi.dhl.plugin.BuildConfig
+
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion BuildConfig.compileSdkVersion
+    buildToolsVersion BuildConfig.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion 14
-        //noinspection OldTargetApi
-        targetSdkVersion 28
-        versionCode 367
-        versionName "3.6.7"
+        minSdkVersion BuildConfig.minSdkVersion
+        targetSdkVersion BuildConfig.targetSdkVersion
+        versionCode 1
+        versionName "1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
     }
@@ -23,24 +26,13 @@ android {
             abortOnError false
         }
     }
-    task intoJar(type: Copy) {
-        delete 'build/libs/CalendarView.jar'
-        from('build/intermediates/bundles/release/')
-        into('build/libs/')
-        include('classes.jar')
-        rename ('classes.jar', 'CalendarView.jar')
-    }
-    intoJar.dependsOn(build)
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    //noinspection GradleDependency
-    implementation 'androidx.appcompat:appcompat:1.0.0'
-    //noinspection GradleDependency
-    implementation 'androidx.recyclerview:recyclerview:1.0.0'
-    testImplementation 'junit:junit:4.12'
+    testImplementation com.hi.dhl.plugin.Test.junit
+    androidTestImplementation com.hi.dhl.plugin.Test.androidTestJunit
+    androidTestImplementation com.hi.dhl.plugin.Test.espressoCore
+    api AndroidX.appcompat
+    api AndroidX.recyclerview
 }

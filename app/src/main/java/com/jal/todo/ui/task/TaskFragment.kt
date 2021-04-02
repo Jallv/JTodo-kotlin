@@ -34,7 +34,7 @@ class TaskFragment : BaseVMFragment<FragmentTaskBinding, TaskViewModel>() {
                 calendar?.let {
                     viewModel.currentTime.set(
                         if (isToday(it.timeInMillis)) {
-                            resources.getString(R.string.today)
+                            resources.getString(R.string.app_today)
                         } else {
                             it.timeInMillis.dateFormat(
                                 FormatType.yyyyMMdd

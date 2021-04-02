@@ -3,18 +3,18 @@
     <item
         android:id="@+id/navigation_task"
         android:icon="@drawable/ic_task_editing"
-        android:title="@string/task" />
+        android:title="@string/app_task" />
 
     <item
         android:id="@+id/navigation_clock"
         android:icon="@drawable/ic_timer"
-        android:title="@string/tomato_clock" />
+        android:title="@string/app_tomato_clock" />
     <item
         android:id="@+id/navigation_record"
         android:icon="@drawable/ic_record"
-        android:title="@string/record" />
+        android:title="@string/app_record" />
     <item
         android:id="@+id/navigation_my"
         android:icon="@drawable/ic_my"
-        android:title="@string/my" />
+        android:title="@string/app_my" />
 </menu>

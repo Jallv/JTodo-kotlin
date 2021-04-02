@@ -1,7 +1,10 @@
 package com.jal.core.base
 
 import android.os.Bundle
+import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 
 /**
  *
@@ -10,14 +13,19 @@ import androidx.appcompat.app.AppCompatActivity
  * @desc:
  */
 abstract class BaseActivity : AppCompatActivity() {
+    protected inline fun <reified T : ViewDataBinding> binding(
+        @LayoutRes resId: Int
+    ): Lazy<T> = lazy {
+        DataBindingUtil.setContentView<T>(this, resId).apply {
+            lifecycleOwner = this@BaseActivity
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(getLayoutResId())
         initView()
         initData()
     }
-
-    abstract fun getLayoutResId(): Int
 
     abstract fun initView()
 
