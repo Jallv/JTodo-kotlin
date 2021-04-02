@@ -26,7 +26,7 @@ object Versions {
     const val junit = "4.13.1"
     const val junitExt = "1.1.2"
     const val espressoCore = "3.3.0"
-    const val coilRuntime = "1.1.0"
+    const val coilRuntime = "1.1.1"
     const val koin = "2.2.2"
     const val hitViewModule = "1.0.0-alpha01"
     const val appStartup = "1.0.0"
@@ -56,7 +56,8 @@ object Android {
 }
 
 object Koin {
-    const val core = "org.koin:koin-core:${Versions.koin}"
+    const val core = "org.koin:koin-android:${Versions.koin}"
+    const val scope = "org.koin:koin-androidx-scope:${Versions.koin}"
     const val viewModel = "org.koin:koin-androidx-viewmodel:${Versions.koin}"
     const val ext = "org.koin:koin-androidx-ext:${Versions.koin}"
 }

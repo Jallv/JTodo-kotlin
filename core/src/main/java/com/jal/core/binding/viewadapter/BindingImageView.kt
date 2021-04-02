@@ -1,7 +1,6 @@
 package com.jal.core.binding.viewadapter
 
 import android.graphics.drawable.Drawable
-import android.text.TextUtils
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import coil.load

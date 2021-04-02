@@ -1,26 +1,26 @@
 package com.jal.todo.ui.task
 
 import android.text.format.DateUtils.isToday
-import androidx.fragment.app.viewModels
 import com.haibin.calendarview.Calendar
 import com.haibin.calendarview.CalendarView
-import com.jal.core.base.BaseFragment
-import com.jal.core.common.FormatType
-import com.jal.core.common.formatLong
+import com.jal.core.base.BaseVMFragment
+import com.jal.core.ext.FormatType
+import com.jal.core.ext.dateFormat
 import com.jal.todo.BR
 import com.jal.todo.R
 import com.jal.todo.databinding.FragmentTaskBinding
 import me.tatarka.bindingcollectionadapter2.BindingRecyclerViewAdapter
+import org.koin.androidx.viewmodel.compat.ViewModelCompat.getViewModel
 
 /**
  * @author aljiang
  * @date 2021/1/28
  * @desc
  */
-class TaskFragment : BaseFragment<FragmentTaskBinding, TaskViewModel>() {
+class TaskFragment : BaseVMFragment<FragmentTaskBinding, TaskViewModel>() {
     override fun getLayoutResId() = R.layout.fragment_task
 
-    override fun initViewModel() = viewModels<TaskViewModel>().value
+    override fun initViewModel() = getViewModel(this, TaskViewModel::class.java)
 
     override fun initVariableId() = BR.viewModel
 
@@ -36,8 +36,7 @@ class TaskFragment : BaseFragment<FragmentTaskBinding, TaskViewModel>() {
                         if (isToday(it.timeInMillis)) {
                             resources.getString(R.string.today)
                         } else {
-                            formatLong(
-                                it.timeInMillis,
+                            it.timeInMillis.dateFormat(
                                 FormatType.yyyyMMdd
                             )
                         }

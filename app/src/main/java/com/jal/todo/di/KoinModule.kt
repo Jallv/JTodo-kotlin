@@ -2,6 +2,7 @@ package com.jal.todo.di
 
 import androidx.room.Room
 import com.jal.core.getContext
+import com.jal.todo.app.App
 import com.jal.todo.data.db.AppDatabase
 import com.jal.todo.ui.task.TaskViewModel
 import com.jal.todo.ui.time.TimerViewModel
@@ -17,6 +18,9 @@ import org.koin.dsl.module
 val viewModelModule = module {
     viewModel { TaskViewModel(get()) }
     viewModel { TimerViewModel(get()) }
+    factory {
+        App.mInstance
+    }
 }
 
 val repositoryModule = module {
@@ -26,6 +30,9 @@ val repositoryModule = module {
             .fallbackToDestructiveMigration()
             .allowMainThreadQueries()
             .build()
+    }
+    single {
+        get<AppDatabase>().taskDao()
     }
 }
 

@@ -1,6 +1,7 @@
 package com.jal.todo.app
 
 import android.app.Application
+import com.jal.todo.BuildConfig
 import com.jal.todo.di.appModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.logger.AndroidLogger
@@ -13,10 +14,17 @@ import org.koin.core.logger.Level
  * @desc
  */
 class App : Application() {
+    companion object {
+        lateinit var mInstance: App
+    }
+
     override fun onCreate() {
         super.onCreate()
+        mInstance = this
         startKoin {
-            AndroidLogger(Level.DEBUG)
+            if (BuildConfig.DEBUG) {
+                AndroidLogger(Level.DEBUG)
+            }
             androidContext(this@App)
             modules(appModule)
         }

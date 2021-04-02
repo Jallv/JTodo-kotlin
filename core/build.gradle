@@ -70,6 +70,7 @@ dependencies {
     api Coil.runtime
 
     api Koin.core
+    api Koin.scope
     api Koin.viewModel
     api Koin.ext
 
