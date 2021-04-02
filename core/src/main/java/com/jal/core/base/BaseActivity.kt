@@ -1,11 +1,14 @@
 package com.jal.core.base
 
+import android.Manifest
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
+import luyao.util.ktx.ext.permission.PermissionsCallbackDSL
+import luyao.util.ktx.ext.permission.request
 
 
 /**
@@ -46,13 +49,15 @@ abstract class BaseActivity<M : ViewDataBinding, T : BaseViewModel<BaseModel>> :
 
     private fun registerUIChangeLiveDataCallBack() {
         viewModel.uc.startActivityEvent.observe(this, Observer {
-            val clz = it[BaseViewModel.ParameterField.CLASS] as Class<*>
-            val bundle = it[BaseViewModel.ParameterField.BUNDLE] as Bundle
-            val obj: Int = it[BaseViewModel.ParameterField.REQUEST_CODE] as Int
-            if (obj != 0) {
-                startActivity(clz, bundle, obj)
-            } else {
-                startActivity(clz, bundle)
+            it?.let {
+                val clz = it[BaseViewModel.CLASS] as Class<*>
+                val bundle = it[BaseViewModel.BUNDLE] as? Bundle
+                val obj = it[BaseViewModel.REQUEST_CODE] as? Int
+                if (obj != 0) {
+                    startActivity(clz, bundle, obj)
+                } else {
+                    startActivity(clz, bundle)
+                }
             }
         })
         viewModel.uc.finishEvent.observe(this, Observer {
@@ -71,13 +76,17 @@ abstract class BaseActivity<M : ViewDataBinding, T : BaseViewModel<BaseModel>> :
     private fun startActivity(
         clz: Class<*>,
         bundle: Bundle?,
-        code: Int
+        code: Int?
     ) {
         val intent = Intent(this, clz)
         if (bundle != null) {
             intent.putExtras(bundle)
         }
-        startActivityForResult(intent, code)
+        if (code != null) {
+            startActivityForResult(intent, code)
+        } else {
+            startActivity(intent)
+        }
     }
 
     /**

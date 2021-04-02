@@ -40,10 +40,12 @@ abstract class BaseFragment<M : ViewDataBinding, T : BaseViewModel<BaseModel>> :
         initViewObservable()
         registerUIChangeLiveDataCallBack()
     }
+
     override fun onDestroy() {
         super.onDestroy()
         lifecycle.removeObserver(viewModel)
     }
+
     /*
      * 私有的初始化Databinding和ViewModel方法
      */
@@ -58,13 +60,15 @@ abstract class BaseFragment<M : ViewDataBinding, T : BaseViewModel<BaseModel>> :
 
     private fun registerUIChangeLiveDataCallBack() {
         viewModel.uc.startActivityEvent.observe(this, Observer {
-            val clz = it[BaseViewModel.ParameterField.CLASS] as Class<*>
-            val bundle = it[BaseViewModel.ParameterField.BUNDLE] as Bundle
-            val obj: Int = it[BaseViewModel.ParameterField.REQUEST_CODE] as Int
-            if (obj != 0) {
-                startActivity(clz, bundle, obj)
-            } else {
-                startActivity(clz, bundle)
+            it?.let {
+                val clz = it[BaseViewModel.CLASS] as Class<*>
+                val bundle = it[BaseViewModel.BUNDLE] as? Bundle
+                val obj = it[BaseViewModel.REQUEST_CODE] as? Int
+                if (obj != 0) {
+                    startActivity(clz, bundle, obj)
+                } else {
+                    startActivity(clz, bundle)
+                }
             }
         })
         viewModel.uc.finishEvent.observe(this, Observer {
@@ -83,13 +87,17 @@ abstract class BaseFragment<M : ViewDataBinding, T : BaseViewModel<BaseModel>> :
     private fun startActivity(
         clz: Class<*>,
         bundle: Bundle?,
-        code: Int
+        code: Int?
     ) {
         val intent = Intent(context, clz)
         if (bundle != null) {
             intent.putExtras(bundle)
         }
-        startActivityForResult(intent, code)
+        if (code != null) {
+            startActivityForResult(intent, code)
+        } else {
+            startActivity(intent)
+        }
     }
 
     /**

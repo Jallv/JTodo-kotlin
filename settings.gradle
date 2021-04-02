@@ -1,5 +1,4 @@
 include ':lib'
-include ':common'
 include ':calendarview'
 include ':core'
 include ':app'

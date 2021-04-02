@@ -4,7 +4,6 @@ plugins {
     id 'com.android.library'
     id 'kotlin-android'
     id 'kotlin-kapt'
-    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -43,24 +42,26 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    testImplementation Depend.junit
-    androidTestImplementation Depend.androidTestJunit
-    androidTestImplementation Depend.espressoCore
-    api project(path: ':common')
+    testImplementation Test.junit
+    androidTestImplementation Test.androidTestJunit
+    androidTestImplementation Test.espressoCore
     api Kt.stdlibJdk8
-    api AndroidX.coreKtx
+    api Kt.coroutinesCore
+    api Kt.coroutinesAndroid
+
     api AndroidX.appcompat
-    api AndroidX.constraintlayout
+    api AndroidX.coreKtx
     api AndroidX.pagingRuntime
-    api AndroidX.swiperefreshlayout
     api AndroidX.appStartup
-    api AndroidX.cardview
-    api AndroidX.navigationfragment
-    api AndroidX.navigationui
-    api Android.meteria
+    api AndroidX.navigationFragment
+    api AndroidX.navigationUi
+    api AndroidX.cardView
     api AndroidX.recyclerview
+    api AndroidX.swipeRefreshLayout
+    api AndroidX.constraintLayout
 
     api Fragment.runtimeKtx
+    api Android.material
 
     api Retrofit.runtime
     api Retrofit.gson
@@ -68,10 +69,9 @@ dependencies {
 
     api Coil.runtime
 
-    api Hilt.daggerRuntime
-    kapt Hilt.daggerCompiler
-    api Hilt.viewModule
-    kapt Hilt.compiler
+    api Koin.core
+    api Koin.viewModel
+    api Koin.ext
 
     api Room.runtime
     api Room.ktx
@@ -83,6 +83,5 @@ dependencies {
     //recyclerview
     api Recyclerview.bindingCollectionAdapter
     api Recyclerview.bindingCollectionAdapterRecyclerview
-    api Glide.glide
-    annotationProcessor Glide.glideCompiler
+    api Util.mmkv
 }

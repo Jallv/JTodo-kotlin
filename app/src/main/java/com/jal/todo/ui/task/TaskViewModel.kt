@@ -4,10 +4,6 @@ import android.app.Application
 import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableField
 import androidx.databinding.ObservableList
-import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.ViewModel
-import com.iflytek.common.DateUtil
-import com.iflytek.common.ResourcesUtil
 import com.jal.core.base.BaseModel
 import com.jal.core.base.BaseViewModel
 import com.jal.todo.BR
@@ -19,7 +15,7 @@ import me.tatarka.bindingcollectionadapter2.ItemBinding
  * @date 2021/1/28
  * @desc
  */
-class TaskViewModel @ViewModelInject constructor(application: Application) :
+class TaskViewModel constructor(application: Application) :
     BaseViewModel<BaseModel>(application) {
     var observableList: ObservableList<TaskItemViewModel> = ObservableArrayList<TaskItemViewModel>()
     var itemBinding: ItemBinding<TaskItemViewModel> =
@@ -27,7 +23,7 @@ class TaskViewModel @ViewModelInject constructor(application: Application) :
     val currentTime = ObservableField<String>()
 
     init {
-        currentTime.set(ResourcesUtil.getString(R.string.today))
+        currentTime.set(getApplication<Application>().getString(R.string.today))
         observableList.add(TaskItemViewModel(this))
     }
 }

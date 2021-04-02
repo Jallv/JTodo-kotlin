@@ -42,10 +42,13 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
+    testImplementation Test.junit
+    androidTestImplementation Test.androidTestJunit
+    androidTestImplementation Test.espressoCore
+
+
     implementation project(path: ':core')
     implementation project(path: ':calendarview')
-    testImplementation Depend.junit
-    androidTestImplementation Depend.androidTestJunit
-    androidTestImplementation Depend.espressoCore
+    api AndroidX.recyclerview
 
 }

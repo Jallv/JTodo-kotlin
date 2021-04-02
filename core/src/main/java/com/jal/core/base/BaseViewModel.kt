@@ -25,7 +25,12 @@ open class BaseViewModel<M : BaseModel?> constructor(
         UIChangeLiveData()
     }
 
-    var backCommand: VoidBindingCommand? = VoidBindingCommand(BindingAction { finish() })
+    var backCommand: VoidBindingCommand? = VoidBindingCommand(object : BindingAction {
+        override fun call() {
+            finish()
+        }
+    })
+
     override fun onCreate() {}
     override fun onResume() {}
     override fun onPause() {}
@@ -88,9 +93,8 @@ open class BaseViewModel<M : BaseModel?> constructor(
         val isError: String? = null
     )
 
-    companion object ParameterField {
+    companion object {
         const val CLASS = "CLASS"
-        const val CANONICAL_NAME = "CANONICAL_NAME"
         const val BUNDLE = "BUNDLE"
         const val REQUEST_CODE = "REQUEST_CODE"
     }
