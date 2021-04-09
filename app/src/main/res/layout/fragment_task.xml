@@ -38,6 +38,12 @@
                     style="@style/ToolbarTitle"
                     app:text="@{viewModel.currentTime}"
                     tools:text="今天" />
+                <ImageView
+                    android:layout_width="@dimen/dp_45"
+                    android:layout_height="@dimen/dp_45"
+                    android:layout_gravity="right|center_vertical"
+                    android:src="@drawable/ic_add"
+                    android:padding="@dimen/dp_12"/>
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.AppBarLayout>
 

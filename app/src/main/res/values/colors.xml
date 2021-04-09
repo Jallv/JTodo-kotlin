@@ -5,6 +5,8 @@
     <color name="app_accent">#308EFF</color>
     <color name="app_main_bg">#F5F6F7</color>
     <color name="app_title">#111111</color>
+    <color name="app_gray">#BBBBBB</color>
+    <color name="app_gray_20">#EEEEEE</color>
 
     <color name="app_calendar_bg">#FFFFFF</color>
     <color name="app_calendar_current_day_lunar_text">#111111</color>
@@ -20,4 +22,7 @@
     <color name="app_calendar_week_text">#111111</color>
 
     <color name="app_task_list_bg">#FFFFFF</color>
+
+
+    <color name="app_countdown_text_color">#020D41</color>
 </resources>

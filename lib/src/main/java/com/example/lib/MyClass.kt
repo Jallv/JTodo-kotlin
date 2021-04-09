@@ -1,25 +1,13 @@
 package com.example.lib
 
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.runBlocking
+data class Person(val name: String, val age: Int)
 
-suspend fun a() {
-    println(1)
-    delay(100)
-    println(2)
-    delay(100)
-    println(3)
-    delay(100)
-    println(4)
-    delay(100)
-    println(5)
-    delay(100)
-    println(6)
-    delay(100)
-    println(7)
-    delay(100)
+fun test(f: Person.() -> Unit = {}) {
+    Person("Jim", 1).apply(f)
 }
 
-fun main() = runBlocking {
-    a()
+fun main() {
+    test {
+        println("name=$name,age=$age")
+    }
 }

@@ -17,7 +17,7 @@ android {
         versionCode BuildConfig.versionCode
         versionName BuildConfig.versionName
         multiDexEnabled true
-        resourcePrefix "app_"
+//        resourcePrefix "app_"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 

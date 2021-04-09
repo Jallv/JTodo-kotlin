@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
-    <string name="app_name">JTodo-kotlin</string>
+    <string name="app_name">JTodo</string>
     <string name="app_task">任务</string>
     <string name="app_tomato_clock">番茄钟</string>
     <string name="app_record">记录</string>
@@ -30,4 +30,5 @@
     <string name="app_understand_focus"><u>了解番茄工作法</u></string>
     <string name="app_start_focus">开始专注</string>
     <string name="app_give_up_focus">放弃专注</string>
+
 </resources>

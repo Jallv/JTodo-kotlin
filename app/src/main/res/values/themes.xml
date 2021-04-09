@@ -8,5 +8,6 @@
         <!--控制各个控件被选中时的颜色-->
         <item name="colorAccent">@color/app_accent</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/white</item>
     </style>
 </resources>

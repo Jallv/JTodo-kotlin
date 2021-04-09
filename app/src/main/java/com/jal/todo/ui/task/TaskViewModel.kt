@@ -19,7 +19,7 @@ class TaskViewModel constructor(application: Application) :
     BaseViewModel<BaseModel>(application) {
     val observableList: ObservableList<TaskItemViewModel> = ObservableArrayList<TaskItemViewModel>()
     val itemBinding: ItemBinding<TaskItemViewModel> =
-        ItemBinding.of(BR.viewModel, R.layout.item_task)
+        ItemBinding.of(BR.viewModel, R.layout.app_item_task)
     val currentTime = ObservableField<String>()
 
     init {
