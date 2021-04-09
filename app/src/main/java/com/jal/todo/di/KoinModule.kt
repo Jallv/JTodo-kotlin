@@ -3,7 +3,8 @@ package com.jal.todo.di
 import androidx.room.Room
 import com.jal.core.getContext
 import com.jal.todo.app.App
-import com.jal.todo.data.db.AppDatabase
+import com.jal.todo.data.AppDatabase
+import com.jal.todo.data.repository.TaskManager
 import com.jal.todo.ui.task.TaskViewModel
 import com.jal.todo.ui.time.TimerViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -33,6 +34,12 @@ val repositoryModule = module {
     }
     single {
         get<AppDatabase>().taskDao()
+    }
+    single {
+        get<AppDatabase>().subTaskDao()
+    }
+    single {
+        TaskManager(get(), get())
     }
 }
 

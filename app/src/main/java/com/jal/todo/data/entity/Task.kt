@@ -10,12 +10,13 @@ import androidx.room.PrimaryKey
  */
 @Entity
 data class Task(
-    @PrimaryKey
-    val createTime: Long = 0,
+    @PrimaryKey(autoGenerate = true)
+    val id: Int,
+    val createTime: Long,
     val date: String,
-    val week: Int,
     val content: String,
-    val isCompleted: Boolean = false,
+    val isCompleted: Boolean,
     val remindTime: String? = null,
-    val subTaskList: List<Task>? = null
+    val repeatId: Long,
+    val repeatType: Int
 )
