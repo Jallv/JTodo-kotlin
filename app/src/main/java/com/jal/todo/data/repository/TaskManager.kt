@@ -4,6 +4,8 @@ import com.jal.todo.data.dao.SubTaskDao
 import com.jal.todo.data.dao.TaskDao
 import com.jal.todo.data.entity.SubTask
 import com.jal.todo.data.entity.Task
+import com.jal.todo.data.entity.TaskResult
+import kotlinx.coroutines.flow.Flow
 
 /**
  *
@@ -12,9 +14,9 @@ import com.jal.todo.data.entity.Task
  * @desc:
  */
 class TaskManager(private val taskDao: TaskDao, private val subTaskDao: SubTaskDao) {
-    fun insertTask(task: Task, subTaskList: List<SubTask>?) {
-        taskDao.insert(task)
-        subTaskList?.let {
+    fun insertTask(taskResult: TaskResult) {
+        taskDao.insert(taskResult.task)
+        taskResult.subTaskList?.let {
             subTaskDao.insert(it)
         }
     }
@@ -24,8 +26,9 @@ class TaskManager(private val taskDao: TaskDao, private val subTaskDao: SubTaskD
         subTaskDao.delete(task.id)
     }
 
-    fun queryTaskResult() {
-
+    fun queryTaskResult(date: String): Flow<List<TaskResult>> {
+        return taskDao.getTaskByDate(date)
     }
+
 
 }

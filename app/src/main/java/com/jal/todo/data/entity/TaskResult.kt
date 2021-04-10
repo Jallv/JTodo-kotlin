@@ -14,5 +14,5 @@ data class TaskResult(
     @Relation(
         parentColumn = "id",
         entityColumn = "taskId"
-    ) val subTaskList: List<SubTask>
+    ) val subTaskList: List<SubTask>?
 )
